@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const sleep = require('await-sleep');
 
 class Util {
-    timerNow() {
+   static timerNow() {
         let data = new Date();
         let Semana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
         // Guarda cada pedaço em uma variável
@@ -19,33 +19,33 @@ class Util {
         let semana = Semana[dia_sem];
         return { dia, mes, hora, min, seg, semana }
     }
-    limpaMemoria() {
+    static limpaMemoria() {
         shell.exec(`sudo sync && sudo sysctl vm.drop_caches=3`)
     }
-    async resetPM2(time = 0) {
+    static async resetPM2(time = 0) {
         await sleep(time)
         shell.exec("pm2 restart all")
     }
-    dockerUp(serviço) {
-        shell.exec(`docker-compose up -d ${serviço}`)
+    static dockerUp(servico) {
+        shell.exec(`docker-compose up -d ${servico}`)
     }
-    dockerUpAll() {
+    static dockerUpAll() {
         shell.exec('docker-compose up -d')
     }
-    dockerStop(serviço) {
+    static dockerStop(serviço) {
         shell.exec(`docker-compose stop ${serviço}`)
     }
-    dockerStopAll() {
+    static dockerStopAll() {
         shell.exec('docker-compose stop')
     }
-    dockerDownAll() {
+    static dockerDownAll() {
         shell.exec('docker-compose down')
     }
-    entraContainer(servico) {
+    static entraContainer(servico) {
         // shell.exec(`docker-compose exec ${servico} --i pm2 scale worker-03 3`)
         // shell.exec(`docker-compose exec ${servico} bash`,{ silent: true })
     }
-    escaleContainer(servico, quantidade) {
+    static escaleContainer(servico, quantidade) {
         shell.exec(`docker-compose scale ${servico}=${quantidade}`)
     }
 

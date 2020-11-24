@@ -1,7 +1,7 @@
 const express = require("express");
 const routes = express.Router();
-
 const { CPU } = require("./lib/getCpu");
+const {PostComandos} = require('./services/postComandos');
 
 routes.get("/", function (req, res) {
   return res.send("Você esta no serviço One for All");
@@ -13,7 +13,7 @@ routes.get("/", function (req, res) {
 
 // routes.get("/processos7dias", Consulta7dias.get7);
 
-// routes.get("/docker", Docker.API);
+routes.get("/dockerUp", PostComandos.dockerUp);
 
 routes.get("/cpu", CPU.cpuStatus);
 
