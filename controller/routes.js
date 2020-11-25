@@ -10,29 +10,26 @@ routes.post("/", function (req, res) {
   return res.send("Você esta no serviço One for All");
 });
 
-// routes.get("/monitoria01", Consulta7dias.getMonitoria01);
+routes.post("/limpaMemoria", PostComandos.limpaMemoria);
 
-// routes.get("/fila", Fila.getFila);
+routes.post("/Pm2Variaval", PostComandos.Pm2Variaval);
 
-// routes.get("/processos7dias", Consulta7dias.get7);
+routes.post("/PM2", PostComandos.PM2);
 
 routes.post("/dockerUp", PostComandos.dockerUp);
 
-routes.post("/pm2UpVariavel", PostComandos.startPm2Variaval);
+routes.post("/dockerStop", PostComandos.dockerStop);
+
+routes.post("/dockerStopAll", PostComandos.dockerStopAll);
+
+routes.post("/escaleContainer", PostComandos.escaleContainer);
+
+routes.post("/dockerUpBuild", PostComandos.dockerUpBuild);
+
+routes.post("/escaleContainer", PostComandos.escaleContainer);
+
 
 routes.get("/cpu", CPU.cpuStatus);
-
-// routes.post("/ligaDocker", (rec,res)=>{
-//   console.log(rec.body);
-//   return res.json({ "result":"deu bom" });
-// });
-
-// routes.post("/ligaDocker", Docker.API_UP);
-
-// routes.post("/desligaDocker", Docker.API_STOP);
-
-
-
 
 
 module.exports = routes;

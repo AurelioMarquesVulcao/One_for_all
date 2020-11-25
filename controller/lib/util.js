@@ -2,7 +2,7 @@ const shell = require('shelljs');
 const sleep = require('await-sleep');
 
 class Util {
-   static timerNow() {
+    static timerNow() {
         let data = new Date();
         let Semana = ["domingo", "segunda", "terca", "quarta", "quinta", "sexta", "sabado"];
         // Guarda cada pedaço em uma variável
@@ -22,36 +22,29 @@ class Util {
     static limpaMemoria() {
         shell.exec(`sudo sync && sudo sysctl vm.drop_caches=3`)
     }
-    static async resetPM2(time = 0) {
-        await sleep(time)
-        shell.exec("pm2 restart all")
+
+    static async PM2(comando) {
+        shell.exec(`pm2 ${comando}`)
     }
-    static async startPM2(servico,nome) {
-        shell.exec(`pm2 start ${servico} --name ${nome}`)
-    }
+
     /**
      * exemplo : pm2 start app/workers/JTE_DOC/Worker/extracao_JTE_5doc.js --name doc13 -- 13
      * @param {*} servico 
      * @param {*} nome 
      * @param {*} variavel 
      */
-    static async startEVariavelPM2(servico,nome, variavel) {
+    static async Pm2Variaval(servico, nome, variavel) {
         shell.exec(`pm2 start ${servico} --name ${nome} -- ${variavel}`)
     }
-    static async stopPM2(time = 0) {
-        await sleep(time)
-        shell.exec("pm2 restart all")
-    }
-    static async deletePM2(time = 0) {
-        await sleep(time)
-        shell.exec("pm2 restart all")
-    }
-    static async stopPM2(time = 0) {
+    static async stopPM2All(time = 0) {
         await sleep(time)
         shell.exec("pm2 restart all")
     }
     static dockerUp(servico) {
         shell.exec(`docker-compose up -d ${servico}`)
+    }
+    static dockerUpBuild(servico) {
+        shell.exec(`docker-compose up -d --build ${servico}`)
     }
     static dockerUpAll() {
         shell.exec('docker-compose up -d')

@@ -11,9 +11,9 @@ class App {
     this.middlewares();
     this.routes();
     
-
-    this.express.listen(3303, () =>
-      console.log(`Sua API REST está funcionando na porta 3303 `)
+    // use o numero final do seu servidor após o 33
+    this.express.listen(3338, () =>
+      console.log(`Sua API REST está funcionando na porta 3338 `)
     );
   }
 
