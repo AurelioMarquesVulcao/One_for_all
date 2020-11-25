@@ -26,6 +26,30 @@ class Util {
         await sleep(time)
         shell.exec("pm2 restart all")
     }
+    static async startPM2(servico,nome) {
+        shell.exec(`pm2 start ${servico} --name ${nome}`)
+    }
+    /**
+     * exemplo : pm2 start app/workers/JTE_DOC/Worker/extracao_JTE_5doc.js --name doc13 -- 13
+     * @param {*} servico 
+     * @param {*} nome 
+     * @param {*} variavel 
+     */
+    static async startEVariavelPM2(servico,nome, variavel) {
+        shell.exec(`pm2 start ${servico} --name ${nome} -- ${variavel}`)
+    }
+    static async stopPM2(time = 0) {
+        await sleep(time)
+        shell.exec("pm2 restart all")
+    }
+    static async deletePM2(time = 0) {
+        await sleep(time)
+        shell.exec("pm2 restart all")
+    }
+    static async stopPM2(time = 0) {
+        await sleep(time)
+        shell.exec("pm2 restart all")
+    }
     static dockerUp(servico) {
         shell.exec(`docker-compose up -d ${servico}`)
     }

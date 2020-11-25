@@ -6,6 +6,9 @@ const {PostComandos} = require('./services/postComandos');
 routes.get("/", function (req, res) {
   return res.send("Você esta no serviço One for All");
 });
+routes.post("/", function (req, res) {
+  return res.send("Você esta no serviço One for All");
+});
 
 // routes.get("/monitoria01", Consulta7dias.getMonitoria01);
 
@@ -13,7 +16,9 @@ routes.get("/", function (req, res) {
 
 // routes.get("/processos7dias", Consulta7dias.get7);
 
-routes.get("/dockerUp", PostComandos.dockerUp);
+routes.post("/dockerUp", PostComandos.dockerUp);
+
+routes.post("/pm2UpVariavel", PostComandos.startPm2Variaval);
 
 routes.get("/cpu", CPU.cpuStatus);
 
