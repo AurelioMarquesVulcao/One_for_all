@@ -61,7 +61,7 @@ class PostComandos {
     try {
       // const { servico } = rec.body;
       await Util.dockerStopAll();
-      return res.json({ serviço: "ok" })
+      return res.json({ serviço: "Todos os Serviços Parados" })
     } catch (e) {
       console.log(e);
       return res.json(e)

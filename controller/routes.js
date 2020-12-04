@@ -27,13 +27,14 @@ routes.post("/escaleContainer", PostComandos.escaleContainer);
 
 routes.post("/dockerUpBuild", PostComandos.dockerUpBuild);
 
-routes.post("/escaleContainer", PostComandos.escaleContainer);
+// routes.post("/escaleContainer", PostComandos.escaleContainer);
 
 
 routes.get("/cpu", CPU.cpuStatus);
 
 routes.get("/pm2List", GetPm2.get);
 
+routes.get("/limpaMemoria", PostComandos.limpaMemoria);
 
 
 module.exports = routes;

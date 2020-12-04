@@ -1,12 +1,12 @@
 const os = require('os');
 const os1 = require('os-utils');
-// const { notificarSlack } = require('./postBrutoSlack');
+const { notificarSlack } = require('./postBrutoSlack');
 
 class CPU {
   static async cpuStatus(rec, res) {
-    
+
     try {
-      let use=await CPU.cpuUse()
+      let use = await CPU.cpuUse()
       const dados = {
         use: use,
         free: await CPU.cpuFree(),
@@ -14,15 +14,18 @@ class CPU {
         memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
       }
       console.log("Obtive os dados de CPU");
-      // if(use>98){
-      //   notificarSlack(
-      //     `<@UREQDQ57T>
-      //     <@U014LNLSMEE> 
-      //     A Cpu do servidor esta pegando fogo!
-      //     O processamento atingiu ${use}, desligue algo!
-      //     `
-      //   )
-      // }
+      if (memoriaFree > 5) {
+        notificarSlack(
+          `<@UREQDQ57T>
+          <@U014LNLSMEE>
+          <@UFYHXG5UM>
+          A Memoria esta a ${memoriaFree}Gb, faça algo com urgência
+          `
+        )
+        // await Util.limpaMemoria();
+      }
+
+
       return res.json(dados)
     } catch (e) {
       console.log(e);
@@ -46,8 +49,13 @@ class CPU {
 module.exports.CPU = CPU;
 
 // (async () => {
-//   console.log(await CPU.cpuStatus());
-
+// //   console.log(await CPU.cpuStatus());
+// notificarSlack(
+//   `<@UREQDQ57T>
+//   <@U014LNLSMEE> 
+//   Teste
+//   `
+// )
 
 
 // })()
