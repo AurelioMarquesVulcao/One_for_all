@@ -6,20 +6,21 @@ class CPU {
   static async cpuStatus(rec, res) {
 
     try {
-      let use = await CPU.cpuUse()
+      let use = await new CPU().cpuUse()
+      let memoriaFree = (os.freemem() / 1000000000).toFixed(2);
       const dados = {
         use: use,
-        free: await CPU.cpuFree(),
+        free: await new CPU().cpuFree(),
         memoriaFree: (os.freemem() / 1000000000).toFixed(2),
         memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
       }
       console.log("Obtive os dados de CPU");
-      if (memoriaFree > 5) {
+      if (memoriaFree < 5) {
         notificarSlack(
           `<@UREQDQ57T>
           <@U014LNLSMEE>
           <@UFYHXG5UM>
-          A Memoria esta a ${memoriaFree}Gb, faça algo com urgência
+          A Memoria esta a ${memoriaFree}Gb, 
           `
         )
         // await Util.limpaMemoria();
@@ -34,12 +35,12 @@ class CPU {
 
   }
 
-  static async cpuUse() {
+  async cpuUse() {
     return new Promise((resp) => {
       os1.cpuUsage(async (v) => resp(Math.trunc(v * 100)))
     })
   }
-  static async cpuFree() {
+  async cpuFree() {
     return new Promise((resp) => {
       os1.cpuFree(async (v) => resp(Math.trunc(v * 100)))
     })
