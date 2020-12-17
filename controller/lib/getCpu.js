@@ -1,19 +1,19 @@
 const os = require('os');
 const os1 = require('os-utils');
 const { notificarSlack } = require('./postBrutoSlack');
+var dados = {};
 
 class CPU {
   static async cpuStatus(rec, res) {
-
     try {
-      let use = await new CPU().cpuUse()
-      let memoriaFree = (os.freemem() / 1000000000).toFixed(2);
-      const dados = {
-        use: use,
-        free: await new CPU().cpuFree(),
-        memoriaFree: (os.freemem() / 1000000000).toFixed(2),
-        memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
-      }
+      // let use = await new CPU().cpuUse()
+      let memoriaFree = dados.memoriaFree;
+      // const dados = {
+      //   use: use,
+      //   free: await new CPU().cpuFree(),
+      //   memoriaFree: (os.freemem() / 1000000000).toFixed(2),
+      //   memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
+      // }
       console.log("Obtive os dados de CPU");
       if (memoriaFree < 5) {
         notificarSlack(
@@ -49,14 +49,14 @@ class CPU {
 
 module.exports.CPU = CPU;
 
-// (async () => {
-// //   console.log(await CPU.cpuStatus());
-// notificarSlack(
-//   `<@UREQDQ57T>
-//   <@U014LNLSMEE> 
-//   Teste
-//   `
-// )
+(async () => {
+  setInterval(async function () {
+    dados = {
+      use: await new CPU().cpuUse(),
+      free: await new CPU().cpuFree(),
+      memoriaFree: (os.freemem() / 1000000000).toFixed(2),
+      memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
+    }
+  }, 3000);
 
-
-// })()
+})()
