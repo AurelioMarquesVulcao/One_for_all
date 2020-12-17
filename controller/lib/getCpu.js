@@ -3,6 +3,7 @@ const os1 = require('os-utils');
 const { notificarSlack } = require('./postBrutoSlack');
 var dados = {};
 
+
 class CPU {
   static async cpuStatus(rec, res) {
     try {
@@ -15,24 +16,11 @@ class CPU {
       //   memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
       // }
       console.log("Obtive os dados de CPU");
-      if (memoriaFree < 5) {
-        notificarSlack(
-          `<@UREQDQ57T>
-          <@U014LNLSMEE>
-          <@UFYHXG5UM>
-          A Memoria esta a ${memoriaFree}Gb, 
-          `
-        )
-        // await Util.limpaMemoria();
-      }
-
-
       return res.json(dados)
     } catch (e) {
       console.log(e);
       return res.json(e)
     }
-
   }
 
   async cpuUse() {
@@ -58,5 +46,16 @@ module.exports.CPU = CPU;
       memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
     }
   }, 3000);
+  setInterval(async function () {
+    if (dados.memoriaFree < 5) {
+      notificarSlack(
+        `<@UREQDQ57T>
+        <@U014LNLSMEE>
+        <@UFYHXG5UM>
+        A Memoria esta a ${memoriaFree}Gb, 
+        `
+      )
+    }
+  }, 300000);
 
 })()
