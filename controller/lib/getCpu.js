@@ -1,3 +1,4 @@
+const diskstats = require('diskstats');
 const os = require('os');
 const os1 = require('os-utils');
 const { notificarSlack } = require('./postBrutoSlack');
@@ -33,6 +34,11 @@ class CPU {
       os1.cpuFree(async (v) => resp(Math.trunc(v * 100)))
     })
   }
+  async hd() {
+    let results = await diskstats.check('.');
+    return Math.round((results.used / results.total)*100)
+
+  }
 }
 
 module.exports.CPU = CPU;
@@ -43,19 +49,28 @@ module.exports.CPU = CPU;
       use: await new CPU().cpuUse(),
       free: await new CPU().cpuFree(),
       memoriaFree: (os.freemem() / 1000000000).toFixed(2),
-      memoriaTotal: (Math.trunc(os.totalmem() / 1000000000))
+      memoriaTotal: (Math.trunc(os.totalmem() / 1000000000)),
+      usoHd: await new CPU().hd()
     }
-  }, 3000);
+  }, 2000);
   setInterval(async function () {
     if (dados.memoriaFree < 5) {
       notificarSlack(
         `<@UREQDQ57T>
         <@U014LNLSMEE>
         <@UFYHXG5UM>
-        A Memoria esta a ${memoriaFree}Gb, 
+        A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. 
+        `
+      )
+    }
+    if (dados.usoHd > 70) {
+      notificarSlack(
+        `<@UREQDQ57T>
+        <@U014LNLSMEE>
+        <@UFYHXG5UM>
+        A Restam ${dados.usoHd}Gb no Hd do servidor 38 do Big Data. 
         `
       )
     }
   }, 300000);
-
 })()
