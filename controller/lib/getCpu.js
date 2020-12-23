@@ -63,7 +63,7 @@ module.exports.CPU = CPU;
         `
       )
     }
-    if (dados.usoHd > 70) {
+    if (dados.usoHd < 20) {
       notificarSlack(
         `<@UREQDQ57T>
         <@U014LNLSMEE>
