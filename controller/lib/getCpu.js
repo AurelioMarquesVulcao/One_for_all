@@ -34,9 +34,18 @@ class CPU {
       os1.cpuFree(async (v) => resp(Math.trunc(v * 100)))
     })
   }
-  async hd() {
+  async freeHd() {
     let results = await diskstats.check('.');
-    return Math.round((results.used / results.total)*100)
+    // console.log(results);
+    // console.log((results.used / results.total)*100);
+    return Math.round(results.free / 1000000)
+
+  }
+  async centHd() {
+    let results = await diskstats.check('.');
+    // console.log(results);
+    // console.log((results.used / results.total)*100);
+    return Math.round((results.used / results.total) * 100)
 
   }
 }
@@ -44,14 +53,17 @@ class CPU {
 module.exports.CPU = CPU;
 
 (async () => {
+  // await new CPU().hd()
   setInterval(async function () {
     dados = {
       use: await new CPU().cpuUse(),
       free: await new CPU().cpuFree(),
       memoriaFree: (os.freemem() / 1000000000).toFixed(2),
       memoriaTotal: (Math.trunc(os.totalmem() / 1000000000)),
-      usoHd: await new CPU().hd()
+      hdFree: await new CPU().freeHd(),
+      hdPercent: await new CPU().centHd()
     }
+    // console.log(dados);
   }, 2000);
   setInterval(async function () {
     if (dados.memoriaFree < 5) {
@@ -63,12 +75,12 @@ module.exports.CPU = CPU;
         `
       )
     }
-    if (dados.usoHd < 20) {
+    if (dados.hdPercent > 90) {
       notificarSlack(
         `<@UREQDQ57T>
         <@U014LNLSMEE>
         <@UFYHXG5UM>
-        A Restam ${dados.usoHd}Gb no Hd do servidor 38 do Big Data. 
+        Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.
         `
       )
     }
