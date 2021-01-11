@@ -2,6 +2,7 @@ const diskstats = require('diskstats');
 const os = require('os');
 const os1 = require('os-utils');
 const { notificarSlack } = require('./postBrutoSlack');
+const { Util } = require('./util');
 var dados = {};
 
 
@@ -66,7 +67,7 @@ module.exports.CPU = CPU;
     // console.log(dados);
   }, 2000);
   setInterval(async function () {
-    if (dados.memoriaFree < 5) {
+    if (dados.memoriaFree < 15) {
       notificarSlack(
         `<@UREQDQ57T>
         <@U014LNLSMEE>
@@ -85,4 +86,9 @@ module.exports.CPU = CPU;
       )
     }
   }, 300000);
+  setInterval(async function () {
+    if (dados.memoriaFree < 12) {
+      await Util.limpaMemoria()
+    }
+  }, 120000);
 })()
