@@ -91,4 +91,10 @@ module.exports.CPU = CPU;
       await Util.limpaMemoria()
     }
   }, 120000);
+
+  setInterval(async function () {
+    if (dados.memoriaFree < 5) {
+      await Util.dockerStopAll()
+    }
+  }, 300000);
 })()
