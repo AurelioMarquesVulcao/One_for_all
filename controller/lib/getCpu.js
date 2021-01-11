@@ -96,5 +96,8 @@ module.exports.CPU = CPU;
     if (dados.memoriaFree < 5) {
       await Util.dockerStopAll()
     }
+    if (dados.hdFree < 10) {
+      await Util.dockerStopAll()
+    }
   }, 300000);
 })()
