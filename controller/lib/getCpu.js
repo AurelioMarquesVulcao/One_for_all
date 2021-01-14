@@ -86,18 +86,19 @@ module.exports.CPU = CPU;
       )
     }
   }, 300000);
-  setInterval(async function () {
-    if (dados.memoriaFree < 12) {
-      await Util.limpaMemoria()
-    }
-  }, 120000);
+  
+  // setInterval(async function () {
+  //   if (dados.memoriaFree < 12) {
+  //     await Util.limpaMemoria()
+  //   }
+  // }, 120000);
 
-  setInterval(async function () {
-    if (dados.memoriaFree < 5) {
-      await Util.dockerStopAll()
-    }
-    if (dados.hdFree < 10) {
-      await Util.dockerStopAll()
-    }
-  }, 300000);
+  // setInterval(async function () {
+  //   if (dados.memoriaFree < 5) {
+  //     await Util.dockerStopAll()
+  //   }
+  //   if (dados.hdFree < 10) {
+  //     await Util.dockerStopAll()
+  //   }
+  // }, 300000);
 })()
