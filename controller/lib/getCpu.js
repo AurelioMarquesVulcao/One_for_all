@@ -87,11 +87,11 @@ module.exports.CPU = CPU;
     }
   }, 300000);
   
-  // setInterval(async function () {
-  //   if (dados.memoriaFree < 12) {
-  //     await Util.limpaMemoria()
-  //   }
-  // }, 120000);
+  setInterval(async function () {
+    if (dados.memoriaFree < 12) {
+      await Util.limpaMemoria()
+    }
+  }, 6000);
 
   // setInterval(async function () {
   //   if (dados.memoriaFree < 5) {
@@ -100,5 +100,5 @@ module.exports.CPU = CPU;
   //   if (dados.hdFree < 10) {
   //     await Util.dockerStopAll()
   //   }
-  // }, 300000);
+  // }, 6000);
 })()
