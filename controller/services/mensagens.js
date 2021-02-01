@@ -1,6 +1,7 @@
 const  axios  = require("axios");
 const { Email } = require("../lib/email");
 const { SlackHandler } = require("../lib/slack");
+const {Telegram} = require('../lib/telegram');
 
 class Mensagens {
   static async slack() {
@@ -11,19 +12,7 @@ class Mensagens {
     await Email.send("amarques@impacta.adv.br", "Envio de logs do sistema", `teste \n teste`);
   }
   static async telegram() {
-    let token = "1616703540:AAGpZKaeiSudHKimeVnT-ShQFk1B0wSHPrU";
-    let id = "-487339495";
-    let data = {
-      "chat_id" : id,
-      text:"mensagem elaborada"
-    }
-    let teste = await axios({
-      method: "POST",
-      token:token,
-      url: `https://api.telegram.org/bot${token}/sendMessage`,
-      data: data
-    }).catch(x=>console.log(x))
-    console.log(teste.data);
+    await Telegram.post("Teste.")
   }
 
 }
