@@ -7,7 +7,7 @@ class Telegram {
    * Envia mensagem ao Grupo
    * @param {string} mensagem Texto que se deseja enviar ao chatbot
    */
-  static async post(mensagem) {
+  static async post(mensagem, chat) {
     let token = "1616703540:AAGpZKaeiSudHKimeVnT-ShQFk1B0wSHPrU";
     let id = "-487339495";
     let data = {

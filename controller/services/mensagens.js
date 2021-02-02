@@ -44,7 +44,7 @@ class Mensagens {
   static async telegram(rec, res) {
     try {
       let date = new Date();
-      const { mensagem } = rec.body;
+      const { mensagem, chat } = rec.body;
       let post = await Telegram.post(
         `${mensagem} \nData: ${date.getFullYear()} / ${
           date.getMonth() + 1
