@@ -1,16 +1,21 @@
-const diskstats = require('diskstats');
+var axios = require('axios');
+const qs = require('qs');
+let data = qs.stringify({
+ 'payload': '{"channel": "#alertas-big-data", "username": "webhookbot", "text": "Teste com Postman.", "icon_emoji": ":slack:"}' 
+});
+var config = {
+  method: 'post',
+  url: 'https://hooks.slack.com/services/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',
+  headers: { 
+    'Content-Type': 'application/x-www-form-urlencoded'
+  },
+  data : data
+};
 
-
-(async () => {
-  //callback
-  //callback
-  await diskstats.check('.', (err, results) => {
-    console.log("livre", results);
-    console.log("toatal", Math.round(results.total / 1000000));
-    console.log("usado", Math.round(results.used / 1000000));
-    console.log("usado", Math.round(results.free / 1000000));
-    console.log("% usado", Math.round((results.used / results.total)*100));
-  });
-
-
-})()
+axios(config)
+.then(function (response) {
+  console.log(JSON.stringify(response.data));
+})
+.catch(function (error) {
+  console.log(error);
+});
