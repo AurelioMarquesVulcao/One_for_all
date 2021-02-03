@@ -43,4 +43,6 @@ routes.get("/pm2List", GetPm2.get);
 
 routes.get("/limpaMemoria", PostComandos.limpaMemoria);
 
+routes.get("/telegram/chat", Mensagens.telegramGrup);
+
 module.exports = routes;

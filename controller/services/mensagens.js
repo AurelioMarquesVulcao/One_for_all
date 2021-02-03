@@ -43,13 +43,17 @@ class Mensagens {
   }
   static async telegram(rec, res) {
     try {
-      let date = new Date();
       const { mensagem, chat } = rec.body;
-      let post = await Telegram.post(
-        `${mensagem} \nData: ${date.getFullYear()} / ${
-          date.getMonth() + 1
-        } / ${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`
-      );
+      let post = await Telegram.post(`${mensagem}`, chat);
+      return res.json(post);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+  static async telegramGrup(rec, res) {
+    try {
+      // const { mensagem, chat } = rec.body;
+      let post = await Telegram.getGroup();
       return res.json(post);
     } catch (e) {
       console.log(e);
