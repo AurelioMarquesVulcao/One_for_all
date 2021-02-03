@@ -21,6 +21,7 @@ class Telegram {
       data: data,
     }).catch((x) => console.log(x));
     console.log(teste.data);
+    return teste.data
   }
 
   static async getGroup() {
