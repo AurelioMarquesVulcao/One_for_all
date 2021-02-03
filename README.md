@@ -2,9 +2,9 @@
 
 ## Ligando PM2:
 
-- rode a aplicação apartir da pasta raiz da sua aplicação
+- rode a aplicação a partir da pasta raiz da sua aplicação
 
-- pegue o caminho relativo do seu arquivo: EX.: "app/worker/helloWorld.js"
+- pegue o caminho relativo ao seu arquivo: EX.: "app/worker/helloWorld.js"
 - envie no corpo da requisição para pm2 com variaveis:
 
 ```js
@@ -98,6 +98,7 @@ print(response.text)
 ## Mensageiros
 
 ### **base url : http://172.16.16.38:3338**
+
 ### **bot Telegram : @ImpactaBr_bot**
 
 - get - /telegram/chat --> Obtem o ultimo log do bot, use esse get após adicionar o bot ao seu chat.
@@ -143,7 +144,7 @@ Para enviar direto ao chat de alertas
 - post - /slack --> Por padrão as mensagens serão enviadas ao grupo #alertas-big-data
 
 ```js
-{"mensagem":"Teste Postman"}
+{"mensagem":"Teste Postman", "chat": "#alertas-big-data"}
 ```
 
 - post - /email --> envia email

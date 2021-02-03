@@ -59,40 +59,40 @@ class SlackHandler {
   }
 
   async post(message = "Testando Post", channel = this.channel) {
-    let date = new Date();
+    // let date = new Date();
     const options = {
       channel: channel,
       username: this.username,
       text: message,
-      attachments: [
-        {
-          color: this.colors.success,
-          fields: [
-            {
-              title: "Data:",
-              value: `${date.getFullYear()} / ${
-                date.getMonth() + 1
-              } / ${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`,
-              short: true,
-            },
-            //       {
-            //         title: "Fila",
-            //         value: fila.nome,
-            //         short: false,
-            //       },
-            //       {
-            //         title: "Estado",
-            //         value: fila.estado,
-            //         short: true,
-            //       },
-            //       {
-            //         title: "Consumo",
-            //         value: fila.estadoConsumo,
-            //         short: true,
-            //       },
-          ],
-        },
-      ],
+      // attachments: [
+      //   {
+      //     color: this.colors.success,
+      //     fields: [
+      //       {
+      //         title: "Data:",
+      //         value: `${date.getFullYear()} / ${
+      //           date.getMonth() + 1
+      //         } / ${date.getDate()} - ${date.getHours()}:${date.getMinutes()}`,
+      //         short: true,
+      //       },
+      //       //       {
+      //       //         title: "Fila",
+      //       //         value: fila.nome,
+      //       //         short: false,
+      //       //       },
+      //       //       {
+      //       //         title: "Estado",
+      //       //         value: fila.estado,
+      //       //         short: true,
+      //       //       },
+      //       //       {
+      //       //         title: "Consumo",
+      //       //         value: fila.estadoConsumo,
+      //       //         short: true,
+      //       //       },
+      //     ],
+      //   },
+      // ],
     };
     return await axios.post(this.url, options);
   }

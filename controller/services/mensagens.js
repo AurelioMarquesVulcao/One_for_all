@@ -17,9 +17,11 @@ class Mensagens {
   }
   static async slack(rec, res) {
     try {
-      const { mensagem } = rec.body;
-      let post = await new SlackHandler().post(`${mensagem}`);
-      return res.json(post);
+      const { mensagem, chat } = rec.body;
+      let post = await new SlackHandler().post(`${mensagem}`, chat);
+      console.log(post.data);
+      res = res.json(post.data)
+      return res;
     } catch (e) {
       console.log(e);
     }
