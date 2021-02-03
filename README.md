@@ -44,6 +44,7 @@ print(response.text)
 
 <br>
 <hr>
+
 ## Rotas Principais
 
 ### **base url : http://172.16.16.38:3338**
