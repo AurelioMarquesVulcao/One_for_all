@@ -10,7 +10,7 @@ class SlackHandler {
       info: "#0275d8",
       warning: "#ffc107",
     };
-    this.channel = "#alertas-big-data";
+    this.channel = "#sandbox";
     this.icon_emoji = ":slack:";
     this.username = "ImpactaBot!";
     this.url = "https://hooks.slack.com/services/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";
