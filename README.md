@@ -152,3 +152,10 @@ Para enviar direto ao chat de alertas
 ```js
 {"destinatario":"amarques@impacta.adv.br", "assunto":"Envio de logs do sistema", "mensagem":"Teste Postman"}
 ```
+
+## Features
+
+- Passar a consutar todas as variáveis via banco.
+- inserir enums
+- inserir .env
+- configurar as respostas de retorno do ./services/postComandos, para que cada rota possua sua resposta personalisada

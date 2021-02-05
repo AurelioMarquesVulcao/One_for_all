@@ -65,28 +65,28 @@ module.exports.CPU = CPU;
     };
     // console.log(dados);
   }, 2000);
-  setInterval(async function () {
-    if (dados.memoriaFree < 15) {
-      await new SlackHandler().post(
-        `<@UREQDQ57T>
-        <@U014LNLSMEE>
-        <@UFYHXG5UM>
-        A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. 
-        `
-      );
-      await Telegram.post(`A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. `);
-    }
-    if (dados.hdPercent > 90) {
-      await new SlackHandler().post(
-        `<@UREQDQ57T>
-        <@U014LNLSMEE>
-        <@UFYHXG5UM>
-        Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.
-        `
-      );
-      await Telegram.post(`Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.`);
-    }
-  }, 300000);
+  // setInterval(async function () {
+  //   if (dados.memoriaFree < 15) {
+  //     await new SlackHandler().post(
+  //       `<@UREQDQ57T>
+  //       <@U014LNLSMEE>
+  //       <@UFYHXG5UM>
+  //       A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. 
+  //       `
+  //     );
+  //     await Telegram.post(`A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. `);
+  //   }
+  //   if (dados.hdPercent > 90) {
+  //     await new SlackHandler().post(
+  //       `<@UREQDQ57T>
+  //       <@U014LNLSMEE>
+  //       <@UFYHXG5UM>
+  //       Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.
+  //       `
+  //     );
+  //     await Telegram.post(`Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.`);
+  //   }
+  // }, 300000);
 
   // setInterval(async function () {
   //   try {
