@@ -65,6 +65,9 @@ class Util {
     static escaleContainer(servico, quantidade) {
         shell.exec(`docker-compose scale ${servico}=${quantidade}`)
     }
+    static comand(servico) {
+        shell.exec(`${servico}`)
+    }
 
 }
 

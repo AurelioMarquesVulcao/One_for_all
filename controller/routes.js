@@ -29,6 +29,8 @@ routes.post("/escaleContainer", PostComandos.escaleContainer);
 
 routes.post("/dockerUpBuild", PostComandos.dockerUpBuild);
 
+routes.post("/comands", PostComandos.comands);
+
 routes.post("/slack", Mensagens.slack);
 
 routes.post("/email", Mensagens.email);
