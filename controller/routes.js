@@ -6,6 +6,7 @@ const { CredencialAdvogado } = require("./services/getCredencialAdv");
 const { GetPm2 } = require("./services/getPM2");
 const { PostComandos } = require("./services/postComandos");
 const { Mensagens } = require("./services/mensagens");
+const { VariaveisAmbiente } = require("./services/getVariavel");
 
 routes.get("/", function (req, res) {
   return res.send("Você esta no serviço One for All");
@@ -40,6 +41,8 @@ routes.post("/telegram", Mensagens.telegram);
 
 routes.post("/credencialAdvogado/modificando", CredencialAdvogado.modificando);
 
+routes.post("/variaveisAmbiente/m", VariaveisAmbiente.modificando);
+
 // routes.post("/escaleContainer", Mensagens.escaleContainer);
 
 routes.get("/cpu", CPU.cpuStatus);
@@ -51,5 +54,7 @@ routes.get("/limpaMemoria", PostComandos.limpaMemoria);
 routes.get("/telegram/chat", Mensagens.telegramGrup);
 
 routes.get("/credencialAdvogado", CredencialAdvogado.variaveis);
+
+routes.get("/variaveisAmbiente", VariaveisAmbiente.variaveis);
 
 module.exports = routes;

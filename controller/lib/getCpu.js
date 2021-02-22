@@ -71,22 +71,22 @@ module.exports.CPU = CPU;
         `<@UREQDQ57T>
         <@U014LNLSMEE>
         <@UFYHXG5UM>
-        A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. 
+        A Restam ${dados.memoriaFree}Gb de RAM no servidor 38 do Big Data. 
         `
       );
-      await Telegram.post(`A Restam ${memoriaFree}Gb de RAM no servidor 38 do Big Data. `);
+      await Telegram.post(`A Restam ${dados.memoriaFree}Gb de RAM no servidor 38 do Big Data. `);
     }
     if (dados.hdPercent > 90) {
       await new SlackHandler().post(
         `<@UREQDQ57T>
         <@U014LNLSMEE>
         <@UFYHXG5UM>
-        Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.
-        `
+        Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.`
       );
       await Telegram.post(`Estão sendo utilizados ${dados.hdPercent}% do espaço do Hd do servidor 38 do Big Data.`);
     }
-  }, 300000);
+    }, 300000 * 3);
+  // }, 5000);
 
   // setInterval(async function () {
   //   try {
