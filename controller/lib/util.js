@@ -1,3 +1,4 @@
+const Crypto = require('crypto-js');
 const shell = require('shelljs');
 const sleep = require('await-sleep');
 
@@ -72,3 +73,94 @@ class Util {
 }
 
 module.exports.Util = Util;
+
+
+class Helper {
+  /**
+   * Converte data comum para formato Date. sem alterar o fuso horário
+   * @param {string} data Data comum. Ex.: 25/02/2020 09:40
+   * @returns {string} 2020-01-01T10:10.000Z
+   */
+  static data(data) {
+    // O GMT-0000 mantem a hora que você inseriu sem alterar fuso -3
+    // se quiser inserir fuso, ex.: horario de brazilia -3GMT.
+    //GMT-0300
+    let regex = data.replace(
+      /([0-9]{1,2})\W([0-9]{1,2})\W([0-9]{4})\s([0-9]{2}\W[0-9]{2})/i,
+      '$3-$2-$1 $4 GMT-0000'
+    );
+    return new Date(regex);
+  }
+
+  /**
+   * pega uma data e subtrai "x" dias dela
+   * @param {data} data1 colocar new Date()
+   * @param {number} dias numero de dias a subtrair
+   */
+  static subtraiData(data1, dias) {
+    let d = data1;
+    let novo = new Date(d.setDate(d.getDate() - dias));
+    // Helper.data(`${novo.getDate()}/${novo.getMonth()+1}/${novo.getFullYear()} 00:00`)
+    // console.log(novo.getDate(),novo.getMonth()+1, novo.getFullYear());
+    return Helper.data(
+      `${novo.getDate()}/${novo.getMonth() + 1}/${novo.getFullYear()} 00:00`
+    );
+  }
+
+  /**
+   * pega uma data e adiciona "x" dias dela
+   * @param {data} data1 colocar new Date()
+   * @param {number} dias numero de dias a subtrair
+   */
+  static somaData(data1, dias) {
+    let d = data1;
+    let novo = new Date(d.setDate(d.getDate() + dias));
+    // Helper.data(`${novo.getDate()}/${novo.getMonth()+1}/${novo.getFullYear()} 00:00`)
+    // console.log(novo.getDate(),novo.getMonth()+1, novo.getFullYear());
+    return Helper.data(
+      `${novo.getDate()}/${novo.getMonth() + 1}/${novo.getFullYear()} 00:00`
+    );
+  }
+
+  static removerEspacosEmBranco(texto) {
+    return texto.replace(/\n+|\s+|\t+/g, ' ').trim();
+  }
+
+  static removerEspeciais(texto) {
+    return texto
+      .replace(/\n+|\t+/g, ' ')
+      .replace(/\:+/, '')
+      .replace(/\s+/g, '_')
+      .replace(/\(+|\)+/g, '')
+      .trim();
+  }
+
+  static removerAcento(texto) {
+    return texto
+      // .toLowerCase()
+      .replace(/[ÁÀÂÃÄ]/g, 'A')
+      .replace(/[ÉÈÊË]/g, 'E')
+      .replace(/[ÍÌÎÏ]/g, 'I')
+      .replace(/[ÓÒÔÕÖ]/g, 'O')
+      .replace(/[ÚÙÛÜ]/g, 'U')
+      .replace(/[Ç]/g, 'C')
+
+      .replace(/[ÁÀÂÃÄ]/gi, 'a')
+      .replace(/[ÉÈÊË]/gi, 'e')
+      .replace(/[ÍÌÎÏ]/gi, 'i')
+      .replace(/[ÓÒÔÕÖ]/gi, 'o')
+      .replace(/[ÚÙÛÜ]/gi, 'u')
+      .replace(/[Ç]/gi, 'c')
+  }
+
+    /**
+   * Gera um hash em sha1 para o parametro fornecido
+   * @param {string} texto Texto para gerar o hash
+   */
+  static hash(texto) {
+    const cifra = Crypto.SHA1(texto);
+    return cifra.toString();
+  }
+}
+
+module.exports.Helper = Helper;

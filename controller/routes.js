@@ -2,6 +2,7 @@ const express = require("express");
 const routes = express.Router();
 
 const { CPU } = require("./lib/getCpu");
+const { CredencialAdvogado } = require("./services/getCredencialAdv");
 const { GetPm2 } = require("./services/getPM2");
 const { PostComandos } = require("./services/postComandos");
 const { Mensagens } = require("./services/mensagens");
@@ -37,6 +38,8 @@ routes.post("/email", Mensagens.email);
 
 routes.post("/telegram", Mensagens.telegram);
 
+routes.post("/credencialAdvogado/modificando", CredencialAdvogado.modificando);
+
 // routes.post("/escaleContainer", Mensagens.escaleContainer);
 
 routes.get("/cpu", CPU.cpuStatus);
@@ -46,5 +49,7 @@ routes.get("/pm2List", GetPm2.get);
 routes.get("/limpaMemoria", PostComandos.limpaMemoria);
 
 routes.get("/telegram/chat", Mensagens.telegramGrup);
+
+routes.get("/credencialAdvogado", CredencialAdvogado.variaveis);
 
 module.exports = routes;
