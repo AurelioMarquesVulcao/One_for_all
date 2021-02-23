@@ -4,16 +4,18 @@ const Schema = mongoose.Schema;
 
 const credenciaisAdvogadosSchema = new Schema(
   {
-    login: { type: String, required: true },
-    senha: { type: String, required: true },
-    estado: { type: String, required: true },
-    utilizado: { type: Number, required: true },
-    portal: { type: String, required: true },
+    nome: String,
+    login: String,
+    senha: String,
+    estado: String,
+    ufCode: Number,
+    utilizado: Number,
+    portal: String,
     status: Object,
     dataCriacao: Date,
     dataAtualização: Date,
-    _hash: { type: String, required: true, unique: true },
-    nome: String,
+    _hash: { type: String, required: false, unique: true },
+    __v:Number
   },
   { versionKey: false }
 );
