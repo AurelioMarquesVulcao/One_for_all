@@ -6,8 +6,9 @@ class VariaveisAmbiente {
    * @param {Object} res Vaiaveis
    */
   static async variaveis(rec, res) {
-    
+    // console.log(rec.body);
     let find = await VariaveisAmbiente.getVarivel(rec.body);
+    // console.log(find);
     try {
       return res.send(find);
     } catch (e) {
@@ -45,7 +46,7 @@ class VariaveisAmbiente {
 
   static async getVarivel(find) {
     try {
-      return await CredenciaisAdvogados.find(find).sort({ _id: -1 });
+      return await AplicacaoVar.find(find).sort({ _id: -1 });
     } catch (e) {
       console.log(e);
     }
