@@ -6,7 +6,8 @@ class VariaveisAmbiente {
    * @param {Object} res Vaiaveis
    */
   static async variaveis(rec, res) {
-    let find = await VariaveisAmbiente.getVarivel();
+    
+    let find = await VariaveisAmbiente.getVarivel(rec.body);
     try {
       return res.send(find);
     } catch (e) {
@@ -52,7 +53,3 @@ class VariaveisAmbiente {
 }
 
 module.exports.VariaveisAmbiente = VariaveisAmbiente;
-
-// (async () => {
-//   await VariaveisAmbiente.getVarivel();
-// })();
