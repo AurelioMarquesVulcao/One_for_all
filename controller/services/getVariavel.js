@@ -32,8 +32,6 @@ class VariaveisAmbiente {
       console.log(_id);
       res.send(await AplicacaoVar[options]({ _id: _id }, data));
     } else if (options == "updateOne") {
-      data["dataAtualização"] = new Date();
-      data.__v = data.__v + 1;
       res.send(await AplicacaoVar[options]({ _id: _id }, data));
     } else if (options == "save") {
       let codeNumber = (await AplicacaoVar.find({}).sort({ codigo: -1 }).limit(1))[0].codigo + 1;
