@@ -1,4 +1,4 @@
-const { AplicacaoVar } = require('../model/variaveis');
+const { AplicacaoVar } = require("../model/variaveis");
 
 class VariaveisAmbiente {
   /**
@@ -24,29 +24,30 @@ class VariaveisAmbiente {
     // estou recebendo os parametros do mongoose na requisição
     // assim uma função pode fazer tudo.
     let { options, data, _id } = rec.body;
-    if (options == 'findOne') {
+    if (options == "findOne") {
       res.send(await AplicacaoVar[options]({ _id: _id }));
-    } else if (options == 'deleteOne') {
+    } else if (options == "deleteOne") {
       console.log(_id);
-      res.send(await AplicacaoVar[options]({ _id: _id },data));
-    } else if (options == 'updateOne') {
-      data['dataAtualização'] = new Date();
+      res.send(await AplicacaoVar[options]({ _id: _id }, data));
+    } else if (options == "updateOne") {
+      data["dataAtualização"] = new Date();
       data.__v = data.__v + 1;
       res.send(await AplicacaoVar[options]({ _id: _id }, data));
-    } else if (options == 'save') {
-      let codeNumber =
-        (await AplicacaoVar.find({}).sort({ codigo: -1 }).limit(1))[0].codigo +
-        1;
-      data['codigo'] = codeNumber;
-      data['dataAtualização'] = new Date();
-      data['dataCriacao'] = new Date();
+    } else if (options == "save") {
+      let codeNumber = (await AplicacaoVar.find({}).sort({ codigo: -1 }).limit(1))[0].codigo + 1;
+      data["codigo"] = codeNumber;
+      data["dataAtualização"] = new Date();
+      data["dataCriacao"] = new Date();
       res.send(await AplicacaoVar(data).save());
     }
   }
 
-  static async getVarivel() {
-    // console.log(await AplicacaoVar.find());
-    return await AplicacaoVar.find().sort({"_id":-1});
+  static async getVarivel(find) {
+    try {
+      return await CredenciaisAdvogados.find(find).sort({ _id: -1 });
+    } catch (e) {
+      console.log(e);
+    }
   }
 }
 
