@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const { Helper } = require('../lib/util');
+const mongoose = require("mongoose");
+const { Helper } = require("../lib/util");
 const Schema = mongoose.Schema;
 
 const credenciaisAdvogadosSchema = new Schema(
@@ -11,19 +11,22 @@ const credenciaisAdvogadosSchema = new Schema(
     ufCode: Number,
     utilizado: Number,
     portal: String,
-    status: Object,
+    status: {
+      ultimoUso: Date,
+      robo: String,
+      status: Boolean,
+      erro: String,
+      errosDoDia: Number,
+    },
     dataCriacao: Date,
     dataAtualização: Date,
     _hash: { type: String, required: false, unique: true },
-    __v:Number
+    __v: Number,
   },
   { versionKey: false }
 );
 
-credenciaisAdvogadosSchema.statics.getCredenciais = async function getCredenciais(
-  estado,
-  idsUsados = []
-) {
+credenciaisAdvogadosSchema.statics.getCredenciais = async function getCredenciais(estado, idsUsados = []) {
   const query = {
     estado: estado,
     _id: { $nin: idsUsados },
@@ -42,19 +45,11 @@ credenciaisAdvogadosSchema.statics.criarHash = async function criarHash(obj) {
 credenciaisAdvogadosSchema.methods.salvar = async function salvar() {
   this._hash = await CredenciaisAdvogados.criarHash(this);
   let credenciais = this.toObject();
-  delete credenciais['_id'];
+  delete credenciais["_id"];
 
-  return await CredenciaisAdvogados.updateOne(
-    { _hash: this._hash },
-    credenciais,
-    { upsert: true }
-  );
+  return await CredenciaisAdvogados.updateOne({ _hash: this._hash }, credenciais, { upsert: true });
 };
 
-const CredenciaisAdvogados = mongoose.model(
-  'CredenciaisAdvogados',
-  credenciaisAdvogadosSchema,
-  'credenciaisAdvogados'
-);
+const CredenciaisAdvogados = mongoose.model("CredenciaisAdvogados", credenciaisAdvogadosSchema, "credenciaisAdvogados");
 
 module.exports.CredenciaisAdvogados = CredenciaisAdvogados;
