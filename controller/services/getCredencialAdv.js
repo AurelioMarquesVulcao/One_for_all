@@ -3,7 +3,7 @@ const { CredenciaisAdvogados } = require('../model/credenciaisAdvogados');
 class CredencialAdvogado {
   static async variaveis(rec, res) {
     console.log(rec.body);
-    let find = await CredenciaisAdvogados.getVarivel(rec.body);
+    let find = await CredencialAdvogado.getVarivel(rec.body);
     // console.log(find);
     try {
       return res.send(find);

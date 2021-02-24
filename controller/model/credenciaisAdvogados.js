@@ -38,7 +38,7 @@ credenciaisAdvogadosSchema.statics.getCredenciais = async function getCredenciai
 };
 
 credenciaisAdvogadosSchema.statics.criarHash = async function criarHash(obj) {
-  let preHash = `${obj.login}${obj.senha}${obj.estado}`;
+  let preHash = `${obj.login}${obj.senha}${obj.estado}${obj.ufCode}${obj.portal}`;
   return Helper.hash(preHash);
 };
 
