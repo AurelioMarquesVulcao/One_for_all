@@ -2,7 +2,7 @@ const { CredenciaisAdvogados } = require('../model/credenciaisAdvogados');
 
 class CredencialAdvogado {
   static async variaveis(rec, res) {
-    // console.log(rec.body);
+    console.log(rec.body);
     let find = await VariaveisAmbiente.getVarivel(rec.body);
     // console.log(find);
     try {
@@ -41,7 +41,7 @@ class CredencialAdvogado {
 
   static async getVarivel(find) {
     try {
-      return await AplicacaoVar.find(find).sort({ _id: -1 });
+      return await CredenciaisAdvogados.find(find).sort({ _id: -1 });
     } catch (e) {
       console.log(e);
     }
