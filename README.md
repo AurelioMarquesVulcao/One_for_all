@@ -1,6 +1,11 @@
 # One For All
 
-## Ligando PM2:
+Recebe requisições para controlar a aplicação principal dentro do servidor de serviço. Deve ser rodada usando Pm2 dentro da pasta da aplicação que se deseja obter o controle exemplo:
+
+Dentro da pasta: --> /home/aurelio/crawlers-bigdata/
+Rode: --> pm2 start ../one-for-all/controller/server.js
+
+<!-- ## Ligando PM2:
 
 - rode a aplicação a partir da pasta raiz da sua aplicação
 
@@ -9,10 +14,10 @@
 
 ```js
 {"comando" : "start app/worker/helloWorld.js"}
-```
+``` -->
 
-<hr>
-<br>
+<!-- <hr> -->
+<!-- <br> -->
 
 ## Request Padrão
 
@@ -152,3 +157,6 @@ Para enviar direto ao chat de alertas
 ```js
 {"destinatario":"amarques@impacta.adv.br", "assunto":"Envio de logs do sistema", "mensagem":"Teste Postman"}
 ```
+
+### Features
+- [ ] Inserir modulo cluster na aplicação para que possamos executar comandos simultaneos. Resolve o problema de não podermos enviar novas solicitações enquanto a ultima não acabar. Ex.: Ao dar rebuid em uma aplicação temos que esperar cerca de 2 minutos para novas solicitações sejam atendidas pelo One for All
