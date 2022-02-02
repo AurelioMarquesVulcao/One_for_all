@@ -25,7 +25,7 @@ class Util {
     }
 
     static desligaServer() {
-      shell.exec(`sudo shutdown`)
+      shell.exec(`sudo shutdown -h now`)
   }
 
     static async PM2(comando) {
