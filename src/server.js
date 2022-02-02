@@ -1,34 +1,34 @@
 const express = require("express");
 const cors = require("cors");
 
+const app = express()
+
 class App {
-  constructor() {
-    this.express = express();
-    
+  constructor() {   
     this.database();
     this.middlewares();
     this.routes();
     
     // use o numero final do seu servidor após o 33
-    this.express.listen(3338, () =>
+    app.listen(3338, () =>
       console.log(`Sua API REST está funcionando na porta 3338 `)
     );
   }
 
   database() {
-    mongoose.connect(db.uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    // mongoose.connect(db.uri, {
+    //   useNewUrlParser: true,
+    //   useUnifiedTopology: true,
+    // });
   }
 
   middlewares() {
-    this.express.use(express.json());
-    this.express.use(cors());
+    app.use(express.json());
+    app.use(cors());
   }
 
   routes() {
-    this.express.use(require("./routes"));
+    app.use(require("./routes"));
   }
 }
-module.exports = new App().express;
+module.exports = new App();
