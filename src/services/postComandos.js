@@ -14,7 +14,7 @@ class PostComandos {
 
   static async desligaServer(rec, res) {
     try {
-      res.json({ serviço: "ok" })
+      res.json({ serviço: "Deligando o server" })
       
       return await Util.desligaServer();
     } catch (e) {
